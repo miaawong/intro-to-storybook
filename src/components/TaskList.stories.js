@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import TaskList from "./TaskList";
+import { PureTaskList } from "./TaskList";
 import * as TaskStories from "./Task.stories";
 import Task from "./Task";
 
 export default {
-  component: TaskList,
+  component: PureTaskList,
   title: "TaskList",
   decorators: [story => <div style={{ padding: "3rem" }}>{story()}</div>],
 };
 
-const Template = args => <TaskList {...args} />;
+const Template = args => <PureTaskList {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
@@ -48,18 +48,5 @@ Empty.args = {
   // Shaping the stories through args composition.
   // Inherited data coming from the Loading story.
   ...Loading.args,
-  loading: false,
-};
-TaskList.propTypes = {
-  /** Checks if it's in loading state */
-  loading: PropTypes.bool,
-  /** The list of tasks */
-  tasks: PropTypes.arrayOf(Task.propTypes.task).isRequired,
-  /** Event to change the task to pinned */
-  onPinTask: PropTypes.func,
-  /** Event to change the task to archived */
-  onArchiveTask: PropTypes.func,
-};
-TaskList.defaultProps = {
   loading: false,
 };
